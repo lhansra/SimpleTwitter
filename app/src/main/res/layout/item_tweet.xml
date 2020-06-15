@@ -20,6 +20,14 @@
         tools:text="@string/user_name" />
 
     <TextView
+        android:id="@+id/tvTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/tvScreenName"
+        tools:text="@string/timeStamp" />
+
+    <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
