@@ -21,8 +21,8 @@ import com.github.scribejava.core.builder.api.BaseApi;
  * 
  */
 public class TwitterClient extends OAuthBaseClient {
-	public static final BaseApi REST_API_INSTANCE = TwitterApi.instance(); // Change this
-	public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
+	public static final BaseApi REST_API_INSTANCE = TwitterApi.instance();
+	public static final String REST_URL = "https://api.twitter.com/1.1";
 	public static final String REST_CONSUMER_KEY = BuildConfig.CONSUMER_KEY;       // Change this inside apikey.properties
 	public static final String REST_CONSUMER_SECRET = BuildConfig.CONSUMER_SECRET; // Change this inside apikey.properties
 
@@ -57,6 +57,16 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("count", 25);
 		params.put("since_id", 1);
+		params.put("tweet_mode", "extended");
+		client.get(apiUrl, params, handler);
+	}
+
+	public void getNextPageOfTweets(JsonHttpResponseHandler handler, long maxId) {
+		String apiUrl = getApiUrl("statuses/home_timeline.json");
+		RequestParams params = new RequestParams();
+		params.put("count", 25);
+		params.put("max_id", maxId);
+		params.put("tweet_mode", "extended");
 		client.get(apiUrl, params, handler);
 	}
 
@@ -64,7 +74,52 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = getApiUrl("statuses/update.json");
 		RequestParams params = new RequestParams();
 		params.put("status", body);
+		params.put("tweet_mode", "extended");
 		client.post(apiUrl, params, "", handler);
+	}
+
+	public void updateLikes(boolean liked, long id,JsonHttpResponseHandler handler){
+		if (liked){
+			String apiUrl = getApiUrl("favorites/destroy.json");
+			RequestParams params = new RequestParams();
+			params.put("id", id);
+			client.post(apiUrl, params, "", handler);
+		} else{
+			String apiUrl = getApiUrl("favorites/create.json");
+			RequestParams params = new RequestParams();
+			params.put("id", id);
+			client.post(apiUrl, params, "", handler);
+		}
+	}
+
+    public void updateRetweets(boolean retweeted, long id,JsonHttpResponseHandler handler){
+        if (retweeted){
+            String apiUrl = getApiUrl("statuses/unretweet/" + id +".json");
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            client.post(apiUrl, params, "", handler);
+        } else{
+            String apiUrl = getApiUrl("statuses/retweet/" + id +".json");
+            RequestParams params = new RequestParams();
+            params.put("id", id);
+            client.post(apiUrl, params, "", handler);
+        }
+    }
+
+    public void getFollowers(long id, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("followers/list.json");
+		RequestParams params = new RequestParams();
+		params.put("user_id", id);
+        params.put("count", 200);
+		client.get(apiUrl, params, handler);
+	}
+
+	public void getFollowing(long id, JsonHttpResponseHandler handler){
+		String apiUrl = getApiUrl("friends/list.json");
+		RequestParams params = new RequestParams();
+		params.put("user_id", id);
+        params.put("count", 200);
+		client.get(apiUrl, params, handler);
 	}
 
 

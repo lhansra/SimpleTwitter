@@ -6,9 +6,11 @@
     <string name="intent_scheme">oauth</string>
     <string name="intent_host">codepathtweets</string>
     <string name="user_name">Name</string>
+    <string name="screen_name">ScreenName</string>
     <string name="tweet">This is a sample tweet.</string>
     <string name="tweetBtn">Tweet</string>
     <string name="composeHint">What\'s up?</string>
-    <string name="timeStamp">Wed Oct 10 20:19:24</string>
+    <string name="timeStamp">1 hour ago</string>
+
 
 </resources>

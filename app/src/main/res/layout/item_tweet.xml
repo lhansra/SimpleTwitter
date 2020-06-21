@@ -3,37 +3,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/reply"
+        android:layout_width="22dp"
+        android:layout_height="18dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/ic_reply_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="5dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        tools:text="@string/user_name" />
 
     <TextView
         android:id="@+id/tvScreenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/imageView"
-        tools:text="@string/user_name" />
+        android:layout_toEndOf="@+id/tvName"
+        tools:text="@string/screen_name" />
 
     <TextView
         android:id="@+id/tvTimeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/tvScreenName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         tools:text="@string/timeStamp" />
 
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScreenName"
+        android:layout_below="@+id/tvName"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/imageView"
+        android:autoLink="all"
+        android:textColor="@android:color/black"
         tools:text="@string/tweet" />
+
+    <ImageView
+        android:id="@+id/like"
+        android:layout_width="22dp"
+        android:layout_height="18dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/reply"
+        app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+    <ImageView
+        android:id="@+id/retweet"
+        android:layout_width="20dp"
+        android:layout_height="18dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/like"
+        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
+
+    <ImageView
+        android:id="@+id/ivMedia"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/retweet"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"
+        tools:srcCompat="@tools:sample/avatars" />
 </RelativeLayout>
